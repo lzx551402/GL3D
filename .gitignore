@@ -1,0 +1,6 @@
+*.bin
+*.txt
+tools
+data/*/images/*.PNG
+data/*/images/*.JPG
+data/*/images/*.jpg
