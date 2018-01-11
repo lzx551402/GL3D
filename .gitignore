@@ -1,6 +1,5 @@
 *.bin
-*.txt
-tools
+*.bag
 data/*/images/*.PNG
 data/*/images/*.JPG
 data/*/images/*.jpg
