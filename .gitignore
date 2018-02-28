@@ -1,5 +1,4 @@
 *.bin
 *.bag
-data/*/images/*.PNG
-data/*/images/*.JPG
-data/*/images/*.jpg
+data/*/images
+data/*/images_desc_train
