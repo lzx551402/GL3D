@@ -1,4 +1,12 @@
 *.bin
 *.bag
+*.match_set
+*.tar
+data/*/geolabel/overlap_rank.txt
 data/*/images
+data/*/raw_images
+data/*/img_kpts
+data/*/retrieval_eval
 data/*/images_desc_train
+data/*/images_retrieval_train
+data/*/sfm_output
