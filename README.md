@@ -24,7 +24,7 @@ To train the local descriptor, use 1000x1000 images and refer to [GeoDesc](https
 
 |  Sources | Full size |  224x224 | 1000x1000 |
 |:--------:|:---------:|:--------:|:---------:|
-| GL3D     | [x.xG]() | [x.xG]() | [x.xG]() | [x.xG]() |
+| GL3D     | [x.xG]() | [3.3 GB]() | [45.0 GB]() |
 
 ## Dataset Format 
 
