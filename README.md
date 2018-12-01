@@ -24,7 +24,7 @@ To train the local descriptor, use 1000x1000 images and refer to [GeoDesc](https
 
 |  Sources | Full size |  224x224 | 1000x1000 |
 |:--------:|:---------:|:--------:|:---------:|
-| GL3D     | [x.xG]() | [3.3 GB]() | [45.0 GB]() |
+| GL3D     | [TBA]() | [3.3 GB]() | [45.0 GB]() |
 
 ## Dataset Format 
 
@@ -39,10 +39,10 @@ data
 
 |File Name                |Task            |Format|Descriptions                                |Dowload |
 |:------------------------|:--------------:|:----:|:------------------------------------------:|:------:|
-|img_kpts/<img_id>.parsed |Local descriptor|      |Image keypoints detected by SIFT            |[x.xG]()|
-|geolabel/corr.bin        |Local descriptor|      |Image correspondences that have survived SfM|[x.xG]()|
-|geolabel/mask.bin        |Image retrieval |      |                                            |[x.xG]()|
-|geolabel/overlap_rank.txt|Image retrieval |      |The *combining overlap ratio* between images as defined in [\[1\]][1]|[x.xG]()|
+|img_kpts/<img_id>.parsed |Local descriptor|      |Image keypoints detected by SIFT            |[TBA]()|
+|geolabel/corr.bin        |Local descriptor|      |Image correspondences that have survived SfM|[TBA]()|
+|geolabel/mask.bin        |Image retrieval |      |                                            |[TBA]()|
+|geolabel/overlap_rank.txt|Image retrieval |      |The *combining overlap ratio* between images as defined in [\[1\]][1]|[TBA]()|
 
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
 
