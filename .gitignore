@@ -1,6 +1,6 @@
 *.bin
 *.match_set
-*.tar
+*.tar*
 .vscode/*
 data/*/geolabel/overlap_rank.txt
 data/*/images
