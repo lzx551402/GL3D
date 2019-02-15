@@ -37,24 +37,33 @@ For example, to download GL3D 224x224 images, run
 bash download_data.sh gl3d_224 0 6 
 ```
 
+To extract the files, run
+```
+cat download_data_gl3d_224/*.tar.* | tar -xvf -
+```
+
 ## Dataset Format 
 
 ```
 data                          
  └── <pid> 
-       ├── images       
-       ├── geolabel
-       ├── img_kpts 
+       ├── images/       
+       ├── geolabel/
+       ├── img_kpts/ 
        └── image_list.txt
 ```
 
-|File Name                |Task            |Format|Descriptions                                |Dowload |
-|:------------------------|:--------------:|:----:|:------------------------------------------:|:------:|
-|img_kpts/<img_id>.parsed |Local descriptor|TBA      |TBA|TBA|
-|geolabel/corr.bin        |Local descriptor|TBA      |TBA|TBA|
-|geolabel/mask.bin        |Image retrieval |TBA      |TBA|TBA|
-|geolabel/overlap_rank.txt|Image retrieval |TBA      |TBA|TBA|
+|File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                           |
+|:------------------------|:-------:|:---------:|:-------:|:--------------:|:-----------------------------------------------------:|
+|geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
+|img_kpts/<img_id>.parsed |TBA      |TBA        |TBA      |Common          |TBA|
+|geolabel/corr.bin        |TBA      |TBA        |TBA      |Local descriptor|TBA|
+|geolabel/mask.bin        |TBA      |TBA        |TBA      |Image retrieval |TBA|
+|geolabel/overlap_rank.txt|TBA      |TBA        |TBA      |Image retrieval |TBA|
 
+Again, use `download_data.sh` to fetch the above geometric labels/reconstruction results. 
+
+## Data Preview
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
 
 ```
