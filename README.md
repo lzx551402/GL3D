@@ -57,7 +57,7 @@ data
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:-----------------------------------------------------:|
 |geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
 |img_kpts/<img_idx>.bin   |gl3d_kpts|0          |58       |Common          |Image keypoints detected by SIFT.                      |
-|geolabel/corr.bin        |TBA      |TBA        |TBA      |Local descriptor|TBA|
+|geolabel/corr.bin        |gl3d_corr|0          |7        |Local descriptor|Image correspondences that haved survived from SfM.    |
 |geolabel/mask.bin        |TBA      |TBA        |TBA      |Image retrieval |TBA|
 |geolabel/overlap_rank.txt|TBA      |TBA        |TBA      |Image retrieval |TBA|
 
