@@ -14,7 +14,7 @@
 
 ## Dataset Description
 
-GL3D contains 90,630 high-resolution images regarding 378 different scenes. Each scene data is reconstructed to generate a triangular mesh model by the state-of-the-art 3D reconstruction pipeline. Refer to [\[1\]][1] for details. For each scene data, we provide the complete image sequence and geometric labels.
+GL3D contains 90,630 high-resolution images regarding 378 different scenes. Each scene data is reconstructed to generate a triangular mesh model by [Altizure](https://www.altizure.com/), a state-of-the-art 3D reconstruction pipeline. Refer to [\[1\]][1] for details. For each scene data, we provide the complete image sequence, geometric labels and reconstruction results.
 
 ## Download
 
@@ -26,7 +26,7 @@ For learning local descriptor, use 1000x1000 images and refer to [GeoDesc](https
 |:-------:|:--------------:|:-----------:|:---------:|:------------------------:|
 |   GL3D  | gl3d_full_size |     TBA     |    TBA    | Full-size images of GL3D |
 |   GL3D  |    gl3d_224    |      0      |     6     |  224x224 images of GL3D  |
-|   Gl3D  |    gl3d_1000   |      0      |     91    | 1000x1000 images of GL3D |
+|   GL3D  |    gl3d_1000   |      0      |     91    | 1000x1000 images of GL3D |
 
 Use `download_data.sh` script to download the tar files, by passing augments
 ```
@@ -47,21 +47,21 @@ cat download_data_gl3d_224/*.tar.* | tar -xvf -
 ```
 data                          
  └── <pid> 
-       ├── images/       
-       ├── geolabel/
-       ├── img_kpts/ 
+       ├── images/*
+       ├── geolabel/*
+       ├── img_kpts/*
        └── image_list.txt
 ```
 
 |File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                           |
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:-----------------------------------------------------:|
 |geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
-|img_kpts/<img_id>.parsed |TBA      |TBA        |TBA      |Common          |TBA|
+|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |58       |Common          |Image keypoints detected by SIFT.                      |
 |geolabel/corr.bin        |TBA      |TBA        |TBA      |Local descriptor|TBA|
 |geolabel/mask.bin        |TBA      |TBA        |TBA      |Image retrieval |TBA|
 |geolabel/overlap_rank.txt|TBA      |TBA        |TBA      |Image retrieval |TBA|
 
-Again, use `download_data.sh` to fetch the above geometric labels/reconstruction results. 
+Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, and refer to [format.md](https://github.com/lzx551402/GL3D/blob/master/doc/format.md) for the file formats.
 
 ## Data Preview
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
