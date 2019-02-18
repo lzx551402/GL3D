@@ -75,11 +75,11 @@ data
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
 
-For data organization, refer to [docs/format.md](https://github.com/lzx551402/GL3D/blob/master/doc/format.md).
+For data organization, refer to [docs/format.md](doc/format.md).
 
-Python-based IO utilities are provided to parse the data, refer to [utils/io.py](https://github.com/lzx551402/GL3D/blob/master/utils/io.py).
+Python-based IO utilities are provided to parse the data, refer to [utils/io.py](utils/io.py).
 
-Visualizations and examples of usage can be found in [example/README.md](https://github.com/lzx551402/GL3D/blob/master/example/README.md).
+Visualizations and examples of usage can be found in [example/README.md](example/README.md).
 
 ## Data Preview
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
