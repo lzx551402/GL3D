@@ -47,3 +47,27 @@ This file contains the image matching results for the entire scene data.
 ```
 
 `FEATURE_IDX` corresponds to the line index of the keypoint files.
+
+## geolabel/mask.bin
+This file contains the overlap masks of image pairs, which have the resolution of 14x14.
+Each mask record has an unique index, hashed from the image pair index. Specifically, 
+*mask_index = image_index0 * 2147483647 + image_index1*, where *image_index0 <= image_index1*.
+```
+# One line of data per mask record, started by a hashed pair index (int64) then followed by two mask record of an image pair (14x14x2 bool).
+# HASHED INDEX, MASK RECORD0 (14x14), MASK RECORD1 (14x14)
+2 false false false true true true true true ... (for the first image) false false false false ... (for the second image)
+...
+```
+
+`true` indicates overlapping region.
+
+## geolabel/mesh_overlap.txt
+This file contains the overlap ratio of image pairs computed from mesh re-projections.
+```
+# One line of data per data:
+1 20 0.447471
+20 1 0.0652112
+...
+```
+
+Be noted that the mesh overlap ratio is not symmetrical.

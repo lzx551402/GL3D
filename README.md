@@ -61,17 +61,18 @@ data
  └── <pid> 
        ├── images/*
        ├── geolabel/*
-       ├── img_kpts/*
+       ├── img_kpts/*.bin
        └── image_list.txt
 ```
 
-|File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                           |
-|:------------------------|:-------:|:---------:|:-------:|:--------------:|:-----------------------------------------------------:|
-|geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
-|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |58       |Common          |Image keypoints detected by SIFT.                      |
-|geolabel/corr.bin        |gl3d_corr|0          |7        |Local descriptor|Image correspondences that haved survived from SfM.    |
-|geolabel/mask.bin        |TBA      |TBA        |TBA      |Image retrieval |TBA|
-|geolabel/overlap_rank.txt|TBA      |TBA        |TBA      |Image retrieval |TBA|
+|File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                                           |
+|:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
+|geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
+|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |58       |Common          |Image keypoints detected by SIFT.                                      |
+|geolabel/corr.bin        |gl3d_corr|0          |7        |Local descriptor|Image correspondences that haved survived from SfM.                    |
+|geolabel/mask.bin        |gl3d_mask|0          |8        |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.       |
+|geolabel/mesh_overlap.txt|gl3d_mo  |0          |0        |Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.  |
+|geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
 
@@ -95,7 +96,7 @@ Noted that some projects are not online available, from `00000000000000000000000
 This dataset is prepared and maintained by
 [Zixin Luo](zluoag@cse.ust.hk),
 [Tianwei Shen](tshenaa@cse.ust.hk),
-[Jacky Tang](jackytck@gmail.com), and
+[Jacky Tang](jackytck@gmail.com) and
 [Tian Fang](fangtian@altizure.com).
 3D reconstructions are obtained by [Altizure](https://www.altizure.com/).
 

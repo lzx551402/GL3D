@@ -11,7 +11,7 @@ import numpy as np
 
 
 def read_corr(file_path):
-    """Read match correspondence file.
+    """Read the match correspondence file.
     Args:
         file_path: file path.
     Returns:
@@ -34,7 +34,7 @@ def read_corr(file_path):
 
 
 def read_kpt(file_path):
-    """Read keypoint file.
+    """Read the keypoint file.
     Args:
         file path: file path.
     Returns:
@@ -43,3 +43,36 @@ def read_kpt(file_path):
     kpt_data = np.fromfile(file_path, dtype=np.float32)
     kpt_data = np.reshape(kpt_data, (-1, 9))
     return kpt_data
+
+
+def hash_int_pair(ind1, ind2):
+    """Hash an int pair.
+    Args:
+        ind1: int1.
+        ind2: int2.
+    Returns:
+        hash_index: the hash index.
+    """
+    assert ind1 <= ind2
+    return ind1 * 2147483647 + ind2
+
+
+def read_mask(file_path, size=14):
+    """Read the mask file.
+    Args:
+        file_path: file path.
+        size: mask size.
+    Returns:
+        mask_dict: mask data in dictionary, indexed by hashed pair index.
+    """
+    mask_dict = {}
+    size = size * size * 2
+    record_size = 8 + size
+
+    with open(file_path, 'rb') as fin:
+        data = fin.read()
+    for i in range(0, len(data), record_size):
+        decoded = unpack('Q' + '?' * size, data[i: i + record_size])
+        mask = np.array(decoded[1:])
+        mask_dict[decoded[0]] = mask
+    return mask_dict
