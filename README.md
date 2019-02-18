@@ -14,7 +14,19 @@
 
 ## Dataset Description
 
-GL3D contains 90,630 high-resolution images regarding 378 different scenes. Each scene data is reconstructed to generate a triangular mesh model by [Altizure](https://www.altizure.com/), a state-of-the-art 3D reconstruction pipeline. Refer to [\[1\]][1] for details. For each scene data, we provide the complete image sequence, geometric labels and reconstruction results.
+GL3D contains 90,630 high-resolution images regarding 378 different scenes. 
+Each scene data is reconstructed to generate a triangular mesh model by the state-of-the-art 3D reconstruction pipeline. 
+Refer to [\[1\]][1] for details. 
+For each scene data, we provide the complete image sequence, geometric labels and reconstruction results.
+
+## Tasks
+
+Research works below are supported by GL3D:
+
+|Task            |Reference                                           |
+|:--------------:|:--------------------------------------------------:|
+|Image retrieval |[MIRorR](https://arxiv.org/abs/1811.10343), ACCV'18 |
+|Local descriptor|[GeoDesc](https://arxiv.org/abs/1807.06294), ECCV'18|
 
 ## Download
 
@@ -61,7 +73,13 @@ data
 |geolabel/mask.bin        |TBA      |TBA        |TBA      |Image retrieval |TBA|
 |geolabel/overlap_rank.txt|TBA      |TBA        |TBA      |Image retrieval |TBA|
 
-Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, and refer to [format.md](https://github.com/lzx551402/GL3D/blob/master/doc/format.md) for the file formats.
+Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
+
+For data organization, refer to [docs/format.md](https://github.com/lzx551402/GL3D/blob/master/doc/format.md).
+
+Python-based IO utilities are provided to parse the data, refer to [utils/io.py](https://github.com/lzx551402/GL3D/blob/master/utils/io.py).
+
+Visualizations and examples of usage can be found in [example/README.md](https://github.com/lzx551402/GL3D/blob/master/example/README.md).
 
 ## Data Preview
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
@@ -71,5 +89,14 @@ https://www.altizure.com/project-model?pid=<pid>
 ```
 
 An example is provided [here](https://www.altizure.com/project-model?pid=57f8d9bbe73f6760f10e916a).
+Noted that some projects are not online available, from `000000000000000000000000` to `00000000000000000000001d`.
+
+## Acknowledgments
+This dataset is prepared and maintained by
+[Zixin Luo](zluoag@cse.ust.hk),
+[Tianwei Shen](tshenaa@cse.ust.hk),
+[Jacky Tang](jackytck@gmail.com), and
+[Tian Fang](fangtian@altizure.com).
+3D reconstructions are obtained by [Altizure](https://www.altizure.com/).
 
 [1]: https://arxiv.org/abs/1811.10343
