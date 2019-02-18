@@ -82,6 +82,8 @@ Python-based IO utilities are provided to parse the data, refer to [utils/io.py]
 
 Visualizations and examples of usage can be found in [example/README.md](example/README.md).
 
+Please feel free to inform us if you need some other intermediate results for your research.
+
 ## Data Preview
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
 
@@ -94,10 +96,10 @@ Noted that some projects are not online available, from `00000000000000000000000
 
 ## Acknowledgments
 This dataset is prepared and maintained by
-[Zixin Luo](zluoag@cse.ust.hk),
-[Tianwei Shen](tshenaa@cse.ust.hk),
-[Jacky Tang](jackytck@gmail.com) and
-[Tian Fang](fangtian@altizure.com).
+[Zixin Luo](mailto:zluoag@cse.ust.hk),
+[Tianwei Shen](mailto:tshenaa@cse.ust.hk),
+[Jacky Tang](mailto:jackytck@gmail.com) and
+[Tian Fang](mailto:fangtian@altizure.com).
 3D reconstructions are obtained by [Altizure](https://www.altizure.com/).
 
 [1]: https://arxiv.org/abs/1811.10343
