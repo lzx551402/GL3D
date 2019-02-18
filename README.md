@@ -12,6 +12,12 @@
         year={2018},
     }
 
+    @inproceedings{luo2018geodesc,
+        title={Geodesc: Learning local descriptors by integrating geometry constraints},
+        author={Luo, Zixin and Shen, Tianwei and Zhou, Lei and Zhu, Siyu and Zhang, Runze and Yao, Yao and Fang, Tian and Quan, Long},
+        booktitle={European Conference on Computer Vision (ECCV)},
+        year={2018}
+    }
 ## Dataset Description
 
 GL3D contains 90,630 high-resolution images regarding 378 different scenes. 
