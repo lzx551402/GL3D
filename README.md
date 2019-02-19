@@ -12,6 +12,8 @@
         year={2018},
     }
 
+If you have used the correspondence labels, please also cite:
+
     @inproceedings{luo2018geodesc,
         title={Geodesc: Learning local descriptors by integrating geometry constraints},
         author={Luo, Zixin and Shen, Tianwei and Zhou, Lei and Zhu, Siyu and Zhang, Runze and Yao, Yao and Fang, Tian and Quan, Long},
