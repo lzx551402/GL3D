@@ -17,6 +17,6 @@ python visualize.py match
 
 Visualize overlap masks.
 ```
-python visualize.py match
+python visualize.py mask
 ```
 ![Visualiztion masks](../img/example_mask.png)
