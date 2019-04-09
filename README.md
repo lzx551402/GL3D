@@ -35,6 +35,7 @@ Research works below are supported by GL3D:
 |:--------------:|:--------------------------------------------------:|
 |Image retrieval |[MIRorR](https://arxiv.org/abs/1811.10343), ACCV'18 |
 |Local descriptor|[GeoDesc](https://arxiv.org/abs/1807.06294), ECCV'18|
+|Local descriptor|[ContextDesc](https://arxiv.org/abs/1904.04084), CVPR'19|
 
 ## Download
 
