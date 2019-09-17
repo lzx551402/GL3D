@@ -20,9 +20,10 @@ If you have used the correspondence labels, please also cite:
         booktitle={European Conference on Computer Vision (ECCV)},
         year={2018}
     }
+
 ## Dataset Description
 
-GL3D contains 90,630 high-resolution images regarding 378 different scenes. 
+GL3D contains 125,623 high-resolution images regarding 543 different scenes. 
 Each scene data is reconstructed to generate a triangular mesh model by the state-of-the-art 3D reconstruction pipeline. 
 Refer to [\[1\]][1] for details. 
 For each scene data, we provide the complete image sequence, geometric labels and reconstruction results.
@@ -39,28 +40,24 @@ Research works below are supported by GL3D:
 
 ## Download
 
-For image retrieval task, use 224x224 images and refer to [MIRorR](https://github.com/hlzz/mirror).
-
-For learning local descriptor, use 1000x1000 images and refer to [GeoDesc](https://github.com/lzx551402/geodesc).
+Undistorted images resized to 1000x1000 are provided.
 
 | Sources |    Data Name   | Chunk Start | Chunk End |       Descriptions       |
 |:-------:|:--------------:|:-----------:|:---------:|:------------------------:|
-|   GL3D  | gl3d_full_size |     TBA     |    TBA    | Full-size images of GL3D |
-|   GL3D  |    gl3d_224    |      0      |     6     |  224x224 images of GL3D  |
-|   GL3D  |    gl3d_1000   |      0      |     91    | 1000x1000 images of GL3D |
+|   GL3D  |    gl3d_imgs   |      0      |    125    | 1000x1000 images of GL3D |
 
 Use `download_data.sh` script to download the tar files, by passing augments
 ```
 bash download_data.sh <data_name> <chunk_start> <chunk_end>
 ```
-For example, to download GL3D 224x224 images, run
+For example, to download GL3D images, run
 ```
-bash download_data.sh gl3d_224 0 6 
+bash download_data.sh gl3d_imgs 0 125
 ```
 
 To extract the files, run
 ```
-cat download_data_gl3d_224/*.tar.* | tar -xvf -
+cat download_data_gl3d_imgs/*.tar.* | tar -xvf - -z
 ```
 
 ## Dataset Format 
@@ -68,7 +65,7 @@ cat download_data_gl3d_224/*.tar.* | tar -xvf -
 ```
 data                          
  └── <pid> 
-       ├── images/*
+       ├── undist_images/*
        ├── geolabel/*
        ├── img_kpts/*.bin
        └── image_list.txt
@@ -77,10 +74,8 @@ data
 |File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                                           |
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
 |geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
-|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |58       |Common          |Image keypoints detected by SIFT.                                      |
-|geolabel/corr.bin        |gl3d_corr|0          |7        |Local descriptor|Image correspondences that haved survived from SfM.                    |
-|geolabel/mask.bin        |gl3d_mask|0          |8        |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.       |
-|geolabel/mesh_overlap.txt|gl3d_mo  |0          |0        |Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.  |
+|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |57       |Common          |Image keypoints detected by SIFT.                                      |
+|geolabel/corr.bin        |gl3d_corr|0          |12        |Local descriptor|Image correspondences that haved survived from SfM.                    |
 |geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
