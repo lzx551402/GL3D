@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Copyright 2019, Zixin Luo, HKUST.
 Visualization tools.
@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 
 sys.path.append('..')
 
-from utils.io import read_kpt, read_corr, read_mask, hash_int_pair
+from utils.geom import get_essential_mat, get_epipolar_dist, undist_points
+from utils.io import read_kpt, read_corr, read_cams
 
 
 def draw_kpts(imgs, kpts, color=(0, 255, 0), radius=2, thickness=2):
@@ -115,52 +116,76 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument('fn', type=str, help='visualization function, e.g., kpt, match, mask.')
+    parser.add_argument('--pair_idx', dest='pair_idx', type=int,
+                        default=0, help='pair index to visualize')
     args = parser.parse_args()
 
-    img_path0 = os.path.join('data', 'images', 'DJI_0348.JPG')
-    img_path1 = os.path.join('data', 'images', 'DJI_0350.JPG')
+    root = '../data/57f8d9bbe73f6760f10e916a'
 
+    # read correspondences
+    match_pair_idx = args.pair_idx
+    corr_path = os.path.join(root, 'geolabel', 'corr.bin')
+    match_records = read_corr(corr_path)
+    cidx0 = match_records[match_pair_idx][0]
+    cidx1 = match_records[match_pair_idx][1]
+    basename0 = str(cidx0).zfill(8)
+    basename1 = str(cidx1).zfill(8)
+    # read images
+    img_path0 = os.path.join(root, 'undist_images', basename0 + '.jpg')
+    img_path1 = os.path.join(root, 'undist_images', basename1 + '.jpg')
     img0 = cv2.imread(img_path0)[..., ::-1]
     img1 = cv2.imread(img_path1)[..., ::-1]
+    # read cameras
+    cam_path = os.path.join(root, 'geolabel', 'cameras.txt')
+    cam_dict = read_cams(cam_path)
+    cam0, cam1 = cam_dict[cidx0], cam_dict[cidx1]
+    K0, K1 = cam0[0], cam1[0]
+    p0f0 = [(K0[0, 2], K0[1, 2]), (K0[0, 0], K0[1, 1])]
+    p1f1 = [(K1[0, 2], K1[1, 2]), (K1[0, 0], K1[1, 1])]
+    t0, t1 = cam0[1], cam1[1]
+    R0, R1 = cam0[2], cam1[2]
+    dist0, dist1 = cam0[3], cam1[3]
+    ori_img_size0, ori_img_size1 = cam0[4], cam1[4]
 
     if args.fn == 'kpt':
         # visualize the keypoint file.
-        kpt_path0 = os.path.join('data', 'img_kpts', '0.bin')
-        kpt_path1 = os.path.join('data', 'img_kpts', '2.bin')
-        kpts0 = read_kpt(kpt_path0)
+        kpt_path0 = os.path.join(root, 'img_kpts', basename0 + '.bin')
+        kpt_path1 = os.path.join(root, 'img_kpts', basename1 + '.bin')
+        # parse keypoint file.
+        kpts0, kpts1 = read_kpt(kpt_path0), read_kpt(kpt_path0)
+        # undistortion.
+        kpts0 = undist_points(kpts0, K0, dist0, ori_img_size0)
+        kpts1 = undist_points(kpts1, K1, dist1, ori_img_size1)
+        # extract normalized coordinates.
         kpts0 = np.stack([kpts0[:, 2], kpts0[:, 5]], axis=-1)
-        img_size0 = np.array((img0.shape[1], img0.shape[0]))
-        kpts0 = kpts0 * img_size0 / 2 + img_size0 / 2
-
-        kpts1 = read_kpt(kpt_path1)
         kpts1 = np.stack([kpts1[:, 2], kpts1[:, 5]], axis=-1)
+        # get image coordinates.
+        img_size0 = np.array((img0.shape[1], img0.shape[0]))
         img_size1 = np.array((img1.shape[1], img1.shape[0]))
+        kpts0 = kpts0 * img_size0 / 2 + img_size0 / 2
         kpts1 = kpts1 * img_size1 / 2 + img_size1 / 2
-
         display = draw_kpts([img0, img1], [kpts0, kpts1])
     elif args.fn == 'match':
-        # visualize the correspondence file.
-        corr_path = os.path.join('data', 'geolabel', 'corr.bin')
-        match_records = read_corr(corr_path)
-        kpts0 = np.stack([match_records[0][2][:, 2], match_records[0][2][:, 5]], axis=-1)
+        kpts0 = match_records[match_pair_idx][2][:, 0:6]
+        kpts0 = undist_points(kpts0, K0, dist0, ori_img_size0)
+        kpts0 = np.stack([kpts0[:, 2], kpts0[:, 5]], axis=-1)
+
+        kpts1 = match_records[match_pair_idx][2][:, 6:12]
+        kpts1 = undist_points(kpts1, K0, dist1, ori_img_size1)
+        kpts1 = np.stack([kpts1[:, 2], kpts1[:, 5]], axis=-1)
+
+        # validate epipolar geometry
+        e_mat = get_essential_mat(t0, t1, R0, R1)
+        epi_dist = get_epipolar_dist(kpts0, kpts1, K0, K1, ori_img_size0, ori_img_size1, e_mat)
+        print('max epipolar distance', np.max(epi_dist))
+
         img_size0 = np.array((img0.shape[1], img0.shape[0]))
-        kpts0 = kpts0 * img_size0 / 2 + img_size0 / 2
-
-        kpts1 = np.stack([match_records[0][2][:, 8], match_records[0][2][:, 11]], axis=-1)
         img_size1 = np.array((img1.shape[1], img1.shape[0]))
+        kpts0 = kpts0 * img_size0 / 2 + img_size0 / 2
         kpts1 = kpts1 * img_size1 / 2 + img_size1 / 2
-
         match_num = kpts0.shape[0]
         match_idx = np.tile(np.array(range(match_num))[..., None], [1, 2])
-
-        display = draw_matches(img0, img1, kpts0, kpts1, match_idx, downscale_ratio=0.05)
-    elif args.fn == 'mask':
-        # visualize the mask file.
-        mask_path = os.path.join('data', 'geolabel', 'mask.bin')
-        mask_dict = read_mask(mask_path)
-        mask = mask_dict.get(hash_int_pair(0, 2))
-
-        display = draw_mask(img0, img1, mask, downscale_ratio=0.2)
+        display = draw_matches(img0, img1, kpts0, kpts1, match_idx, downscale_ratio=1.0)
     else:
         raise NotImplementedError()
 

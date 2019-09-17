@@ -107,3 +107,11 @@ This dataset is prepared and maintained by
 3D reconstructions are obtained by [Altizure](https://www.altizure.com/).
 
 [1]: https://arxiv.org/abs/1811.10343
+
+## Changelog
+### 2019-9-17 Releasing of GL3D_V2
+- Another 165 datasets are added, covering mainly landmarks and small objects.
+- Rerun SfM for all datasets with [GeoDesc](https://github.com/lzx551402/geodesc) to obtain denser reconstruction.
+- Camera distortion paramters are provided.
+- Undistorted images are provided.
+- More helper functions to perform geometry computation.
