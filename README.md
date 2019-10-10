@@ -73,7 +73,7 @@ data
 
 |File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                                           |
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
-|geolabel/cameras.txt     |gl3d_cam |0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
+|geolabel/cameras.txt     |gl3d_cams |0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
 |img_kpts/<img_idx>.bin   |gl3d_kpts|0          |57       |Common          |Image keypoints detected by SIFT.                                      |
 |geolabel/corr.bin        |gl3d_corr|0          |12        |Local descriptor|Image correspondences that haved survived from SfM.                    |
 |geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
