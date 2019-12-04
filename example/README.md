@@ -1,6 +1,6 @@
 ## visualize.py
 
-An example tool for visualizing the geometric labels or reconstruction results.
+An example tool for visualizing geometric labels or reconstruction results.
 
 Visualize image keypoints.
 ```
@@ -20,3 +20,9 @@ Visualize overlap masks.
 python visualize.py mask
 ```
 ![Visualiztion masks](../img/example_mask.png)
+
+Visualize depth maps.
+```
+python visualize.py depth
+```
+![Visualizeation depths](../img/example_depth.png)

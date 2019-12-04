@@ -1,6 +1,5 @@
 data/*/depths
-data/*/geolabel/*.bin
-data/*/geolabel/*.txt
+data/*/geolabel
 data/*/img_kpts
 data/*/reg_feat
 data/*/undist_images
@@ -11,4 +10,3 @@ data/*/raw_images
 .vscode/*
 data/tourism_*
 data_list
-upload_data

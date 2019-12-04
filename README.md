@@ -75,7 +75,8 @@ data
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
 |geolabel/cameras.txt     |gl3d_cams|0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
 |img_kpts/<img_idx>.bin   |gl3d_kpts|0          |57       |Common          |Image keypoints detected by SIFT.                                      |
-|geolabel/corr.bin        |gl3d_corr|0          |12        |Local descriptor|Image correspondences that haved survived from SfM.                    |
+|depths/<img_idx>.pfm     |gl3d_depths|0        |59       |Local descriptor|Depth maps.                    |
+|geolabel/corr.bin        |gl3d_corr|0          |12       |Local descriptor|Image correspondences that haved survived from SfM.                    |
 |geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
@@ -115,3 +116,7 @@ This dataset is prepared and maintained by
 - Camera distortion paramters are provided.
 - Undistorted images are provided.
 - More helper functions to perform geometry computation.
+
+### 2019-12-4 Update GL3D_V2
+- Provide depth maps to enrich geometric labels.
+- Provide helper functions to parse depth maps.

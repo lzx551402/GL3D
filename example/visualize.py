@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 sys.path.append('..')
 
-from utils.geom import get_essential_mat, get_epipolar_dist, undist_points
-from utils.io import read_kpt, read_corr, read_cams
+from utils.geom import get_essential_mat, get_epipolar_dist, undist_points, warp, grid_positions, upscale_positions, downscale_positions, relative_pose
+from utils.io import read_kpt, read_corr, read_mask, hash_int_pair, read_cams, load_pfm
 
 
 def draw_kpts(imgs, kpts, color=(0, 255, 0), radius=2, thickness=2):
@@ -186,6 +186,32 @@ if __name__ == '__main__':
         match_num = kpts0.shape[0]
         match_idx = np.tile(np.array(range(match_num))[..., None], [1, 2])
         display = draw_matches(img0, img1, kpts0, kpts1, match_idx, downscale_ratio=1.0)
+    elif args.fn == 'depth':
+        depth_path0 = os.path.join(root, 'depths', basename0 + '.pfm')
+        depth_path1 = os.path.join(root, 'depths', basename1 + '.pfm')
+        depth0 = load_pfm(depth_path0)
+        depth1 = load_pfm(depth_path1)
+
+        rel_pose = relative_pose([R0, t0], [R1, t1])
+        rel_pose = np.concatenate(rel_pose, axis=-1)
+
+        pos0 = grid_positions(depth0.shape[0], depth0.shape[1])
+        r0 = ori_img_size0 / depth0.shape[::-1][1:]
+        r1 = ori_img_size1 / depth1.shape[::-1][1:]
+        r_K0 = np.stack([K0[0] / r0[0], K0[1] / r0[1], K0[2]], axis=0)
+        r_K1 = np.stack([K1[0] / r1[0], K1[1] / r1[1], K1[2]], axis=0)
+
+        pos0, pos1, ids = warp(pos0, rel_pose, depth0, r_K0, depth1, r_K1)
+
+        disp_img0 = cv2.resize(img0, (0, 0), fx=0.25, fy=0.25)
+        disp_img1 = cv2.resize(img1, (0, 0), fx=0.25, fy=0.25)
+
+        pos0 = np.round(pos0).astype(np.int32)
+        pos1 = np.round(pos1).astype(np.int32)
+
+        warp_img = np.zeros_like(disp_img1)
+        warp_img[pos1[:, 0], pos1[:, 1]] = disp_img0[pos0[:, 0], pos0[:, 1]]
+        display = np.concatenate([warp_img, disp_img1], axis=1)
     else:
         raise NotImplementedError()
 
