@@ -116,10 +116,7 @@ This dataset is prepared and maintained by
 - Camera distortion paramters are provided.
 - Undistorted images are provided.
 - More helper functions to perform geometry computation.
-<<<<<<< HEAD
 
 ### 2019-12-4 Update GL3D_V2
 - Provide depth maps to enrich geometric labels.
 - Provide helper functions to parse depth maps.
-=======
->>>>>>> 0da15fc601183a31f248ade9a3acdcc791f1b367
