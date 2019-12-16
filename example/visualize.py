@@ -78,7 +78,7 @@ def draw_matches(img0, img1, kpts0, kpts1, match_idx,
     return display
 
 
-def draw_mask(img0, img1, mask, size=14, downscale_ratio=1):
+def draw_mask(img0, img1, mask, size=32, downscale_ratio=1):
     """
     Args:
         img: color image.
@@ -211,7 +211,18 @@ if __name__ == '__main__':
 
         warp_img = np.zeros_like(disp_img1)
         warp_img[pos1[:, 0], pos1[:, 1]] = disp_img0[pos0[:, 0], pos0[:, 1]]
-        display = np.concatenate([warp_img, disp_img1], axis=1)
+        disp_depth = np.concatenate([depth0, depth1], axis=1)
+        disp_depth = np.tile(disp_depth[..., None], (1, 1, 3))
+        disp_warp = np.concatenate([warp_img, disp_img1], axis=1)
+        disp_depth = disp_depth / np.max(disp_depth).astype(np.float32)
+        disp_warp = disp_warp / np.max(disp_warp).astype(np.float32)
+        display = np.concatenate([disp_depth, disp_warp], axis=0)
+    elif args.fn == 'mask':
+        # visualize the mask file.
+        mask_path = os.path.join(root, 'geolabel', 'mask.bin')
+        mask_dict = read_mask(mask_path)
+        mask = mask_dict.get(hash_int_pair(cidx0, cidx1))
+        display = draw_mask(img0, img1, mask, downscale_ratio=0.5)
     else:
         raise NotImplementedError()
 

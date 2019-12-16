@@ -8,7 +8,6 @@ python visualize.py kpt
 ```
 ![Visualization keypoints](../img/example_kpt.png)
 
-
 Visualize matching results.
 ```
 python visualize.py match

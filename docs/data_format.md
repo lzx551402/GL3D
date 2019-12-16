@@ -32,7 +32,7 @@ Given image size (W, H), the keypoint position can be obtained by:
 
 Be noted that the keypoints are detected from distorted images. The undistortion function is provided in [geom.py](../utils/geom.py) and example usage can be found in [example.py](../example/visualize.py).
 
-## depths/.pfm (not ready)
+## depths/<img_idx>.pfm
 Depth maps are stored in pfm format. Use `load_pfm` in [io.py](../utils/io.py) to prase the data.
 
 ## geolabel/corr.bin
@@ -53,7 +53,7 @@ This file contains the image matching results for the entire scene data.
 
 `FEATURE_IDX` corresponds to the line index of the keypoint files.
 
-## geolabel/common_track.txt & geolabel/mesh_overlap.txt (not ready)
+## geolabel/common_track.txt & geolabel/mesh_overlap.txt
 This file contains the overlap ratio of image pairs computed from common track ratio or mesh re-projections.
 ```
 # One line of data per data:
@@ -64,16 +64,13 @@ This file contains the overlap ratio of image pairs computed from common track r
 
 Be noted that the both measurements are not symmetrical.
 
-## geolabel/mask.bin (not ready)
-This file contains the overlap masks of image pairs, which have the resolution of 14x14.
-Each mask record has an unique index, hashed from the image pair index. Specifically, 
-*mask_index = image_index0 * 2147483647 + image_index1*, where *image_index0 <= image_index1*.
+## geolabel/mask.bin
+This file contains the overlap masks of image pairs, which have the resolution of 64x64.
 ```
-# One line of data per mask record, started by a hashed pair index (int64) then followed by two mask record of an image pair (14x14x2 bool).
-# HASHED INDEX, MASK RECORD0 (14x14), MASK RECORD1 (14x14)
-2 false false false true true true true true ... (for the first image) false false false false ... (for the second image)
+# One line of data per mask record, started by a hashed pair index (int64) then followed by two mask record of an image pair (32x32x2 bool).
+# IMG_IDX0, IMG_IDX1, MASK RECORD0 (64x64), MASK RECORD1 (64x64)
+0 1 false false false true true true true true ... (for the first image) false false false false ... (for the second image)
 ...
 ```
 
-`true` indicates overlapping region.
-
+where `true` indicates overlapping region.

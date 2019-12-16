@@ -37,6 +37,7 @@ Research works below are supported by GL3D:
 |Image retrieval |[MIRorR](https://arxiv.org/abs/1811.10343), ACCV'18 |
 |Local descriptor|[GeoDesc](https://arxiv.org/abs/1807.06294), ECCV'18|
 |Local descriptor|[ContextDesc](https://arxiv.org/abs/1904.04084), CVPR'19|
+|Outlier rejection|[OA-Net](https://arxiv.org/abs/1908.04964), ICCV'19|
 
 ## Download
 
@@ -75,9 +76,11 @@ data
 |:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
 |geolabel/cameras.txt     |gl3d_cams |0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
 |img_kpts/<img_idx>.bin   |gl3d_kpts|0          |57       |Common          |Image keypoints detected by SIFT.                                      |
-|depths/<img_idx>.pfm     |gl3d_depths|0        |59       |Local descriptor|Depth maps.                    |
+|depths/<img_idx>.pfm     |gl3d_depths|0        |59       |Local descriptor|Depth maps from MVS algorithms.               |
 |geolabel/corr.bin        |gl3d_corr|0          |12       |Local descriptor|Image correspondences that haved survived from SfM.                    |
+|geolabel/mask.bin        |gl3d_mask|0          |10       |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.|
 |geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
+|geolabel/mesh_overlap.txt|gl3d_mo  |0          |0        |Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.|
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
 
@@ -113,7 +116,7 @@ This dataset is prepared and maintained by
 ### 2019-9-17 Releasing of GL3D_V2
 - Another 165 datasets are added, covering mainly landmarks and small objects.
 - Rerun SfM for all datasets with [GeoDesc](https://github.com/lzx551402/geodesc) to obtain denser reconstruction.
-- Camera distortion paramters are provided.
+- Camera distortion parameters are provided.
 - Undistorted images are provided.
 - More helper functions to perform geometry computation.
 

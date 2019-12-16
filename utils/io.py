@@ -93,7 +93,7 @@ def hash_int_pair(ind1, ind2):
     return ind1 * 2147483647 + ind2
 
 
-def read_mask(file_path, size=14):
+def read_mask(file_path, size=32):
     """Read the mask file.
     Args:
         file_path: file path.
@@ -108,9 +108,9 @@ def read_mask(file_path, size=14):
     with open(file_path, 'rb') as fin:
         data = fin.read()
     for i in range(0, len(data), record_size):
-        decoded = unpack('Q' + '?' * size, data[i: i + record_size])
-        mask = np.array(decoded[1:])
-        mask_dict[decoded[0]] = mask
+        decoded = unpack('2i' + '?' * size, data[i: i + record_size])
+        mask = np.array(decoded[2:])
+        mask_dict[hash_int_pair(decoded[0], decoded[1])] = mask
     return mask_dict
 
 
