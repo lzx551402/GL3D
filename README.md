@@ -1,5 +1,5 @@
 # GL3D: Geometric Learning with 3D Reconstruction
-![Example sequence](imgs/dataset_view.png)
+![Example sequence](imgs/gl3d_view.png)
 
 ## About
 
