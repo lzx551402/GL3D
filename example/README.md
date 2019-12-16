@@ -6,22 +6,22 @@ Visualize image keypoints.
 ```
 python visualize.py kpt
 ```
-![Visualization keypoints](../img/example_kpt.png)
+![Visualization keypoints](../imgs/example_kpt.png)
 
 Visualize matching results.
 ```
 python visualize.py match
 ```
-![Visualiztion matches](../img/example_match.png)
+![Visualiztion matches](../imgs/example_match.png)
 
 Visualize overlap masks.
 ```
 python visualize.py mask
 ```
-![Visualiztion masks](../img/example_mask.png)
+![Visualiztion masks](../imgs/example_mask.png)
 
 Visualize depth maps.
 ```
 python visualize.py depth
 ```
-![Visualizeation depths](../img/example_depth.png)
+![Visualizeation depths](../imgs/example_depth.png)

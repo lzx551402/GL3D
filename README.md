@@ -1,5 +1,5 @@
 # GL3D: Geometric Learning with 3D Reconstruction
-![Example sequence](img/dataset_view.png)
+![Example sequence](imgs/dataset_view.png)
 
 ## About
 
@@ -28,6 +28,10 @@ Each scene data is reconstructed to generate a triangular mesh model by the stat
 Refer to [\[1\]][1] for details. 
 For each scene data, we provide the complete image sequence, geometric labels and reconstruction results.
 
+To increase the data diversity, we have also applied the same data generation pipeline on some Internet tourism datasets that are publicly available.
+In practice, we recommend using both GL3D and tourism datasets collaboratively in training for better generalization ability.
+Refer to [docs/tourism_data.md](docs/tourism_data.md) for details.
+
 ## Tasks
 
 Research works below are supported by GL3D:
@@ -39,7 +43,7 @@ Research works below are supported by GL3D:
 |Local descriptor|[ContextDesc](https://arxiv.org/abs/1904.04084), CVPR'19|
 |Outlier rejection|[OA-Net](https://arxiv.org/abs/1908.04964), ICCV'19|
 
-## Download
+## Downloads
 
 Undistorted images resized to 1000x1000 are provided.
 
@@ -69,6 +73,7 @@ data
        ├── undist_images/*
        ├── geolabel/*
        ├── img_kpts/*.bin
+       ├── depths/*.pfm
        └── image_list.txt
 ```
 
@@ -84,7 +89,7 @@ data
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
 
-For data organization, refer to [docs/format.md](doc/format.md).
+For data organization, refer to [docs/data_format.md](docs/data_format.md).
 
 Python-based IO utilities are provided to parse the data, refer to [utils/io.py](utils/io.py).
 
@@ -123,3 +128,7 @@ This dataset is prepared and maintained by
 ### 2019-12-4 Update GL3D_V2
 - Provide depth maps to enrich geometric labels.
 - Provide helper functions to parse depth maps.
+
+### 2019-12-16 Update GL3D_V2
+- Another 530 Internet tourism datasets are added to enrich the data.
+- Mesh overlapping ratio and overlapping masks are provided.

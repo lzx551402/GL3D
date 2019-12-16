@@ -8,5 +8,4 @@ data/*/raw_images
 
 *.pyc
 .vscode/*
-data/tourism_*
 data_list
