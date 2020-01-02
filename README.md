@@ -47,9 +47,9 @@ Research works below are supported by GL3D:
 
 Undistorted images resized to 1000x1000 are provided.
 
-| Sources |    Data Name   | Chunk Start | Chunk End |       Descriptions       |
-|:-------:|:--------------:|:-----------:|:---------:|:------------------------:|
-|   GL3D  |    gl3d_imgs   |      0      |    125    | 1000x1000 images of GL3D |
+| Sources |    Data Name   | Chunk Start | Chunk End |Disk|       Descriptions       |
+|:-------:|:--------------:|:-----------:|:---------:|:--:|:------------------------:|
+|   GL3D  |    gl3d_imgs   |      0      |    125    |62G |1000x1000 undistorted images of GL3D |
 
 Use `download_data.sh` script to download the tar files, by passing augments
 ```
@@ -77,15 +77,15 @@ data
        └── image_list.txt
 ```
 
-|File Name                |Data Name|Chunk Start|Chunk End|Task            |Descriptions                                                           |
-|:------------------------|:-------:|:---------:|:-------:|:--------------:|:---------------------------------------------------------------------:|
-|geolabel/cameras.txt     |gl3d_cams |0          |0        |Common          |Camera intrisic/extrinsic parameters, recovered by SfM.                |
-|img_kpts/<img_idx>.bin   |gl3d_kpts|0          |57       |Common          |Image keypoints detected by SIFT.                                      |
-|depths/<img_idx>.pfm     |gl3d_depths|0        |59       |Local descriptor|Depth maps from MVS algorithms.               |
-|geolabel/corr.bin        |gl3d_corr|0          |12       |Local descriptor|Image correspondences that haved survived from SfM.                    |
-|geolabel/mask.bin        |gl3d_mask|0          |10       |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.|
-|geolabel/common_track.txt|gl3d_ct  |0          |0        |Image retrieval |Common track ratio of image pairs, computed from SfM.                  |
-|geolabel/mesh_overlap.txt|gl3d_mo  |0          |0        |Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.|
+|File Name                |Data Name  |Chunk Start|Chunk End|Disk |Task            |Descriptions                                                         |
+|:------------------------|:---------:|:---------:|:-------:|:---:|:--------------:|:-------------------------------------------------------------------:|
+|geolabel/cameras.txt     |gl3d_cams  |0          |0        |<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.              |
+|img_kpts/<img_idx>.bin   |gl3d_kpts  |0          |57       |28G  |Common          |Image keypoints detected by SIFT.                                    |
+|depths/<img_idx>.pfm     |gl3d_depths|0          |59       |30G  |Common          |Depth maps from MVS algorithms.                                      |
+|geolabel/corr.bin        |gl3d_corr  |0          |12       |6.1G |Local descriptor|Image correspondences that haved survived from SfM.                  |
+|geolabel/mask.bin        |gl3d_mask  |0          |10       |5.3G |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.     |
+|geolabel/common_track.txt|gl3d_ct    |0          |0        |<0.1G|Image retrieval |Common track ratio of image pairs, computed from SfM.                |
+|geolabel/mesh_overlap.txt|gl3d_mo    |0          |0        |<0.1G|Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.|
 
 Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results, 
 
