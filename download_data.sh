@@ -15,6 +15,6 @@ for ((i=CHUNK_START;i<=CHUNK_END;i++)); do
     echo $URL
 done
 
-URL=research.altizure.com/data/$DATA_NAME/sha1sum.txt
+URL=research.altizure.com/data/gl3d_v2/$DATA_NAME/sha1sum.txt
 wget -c $URL -P download_data_$DATA_NAME
 
