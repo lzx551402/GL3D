@@ -62,7 +62,7 @@ bash download_data.sh gl3d_imgs 0 125
 
 To extract the files, run
 ```
-cat download_data_gl3d_imgs/*.tar.* | tar -xvf - -z
+cat download_data_gl3d_imgs/*.tar.* | tar -xvf -
 ```
 
 ## Dataset Format 
