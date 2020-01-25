@@ -50,6 +50,7 @@ Undistorted images resized to 1000x1000 are provided.
 | Sources |    Data Name   | Chunk Start | Chunk End |Disk|       Descriptions       |
 |:-------:|:--------------:|:-----------:|:---------:|:--:|:------------------------:|
 |   GL3D  |    gl3d_imgs   |      0      |    125    |62G |1000x1000 undistorted images of GL3D |
+|   GL3D  | gl3d_raw_imgs  |      0      |    106    |52G |raw images of test set of GL3D       |
 
 Use `download_data.sh` script to download the tar files, by passing augments
 ```
