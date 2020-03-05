@@ -18,14 +18,13 @@ Visualize overlap masks.
 ```
 python visualize.py mask
 ```
-![Visualiztion corresponding patches](../imgs/example_patch.png)
+![Visualiztion masks](../imgs/example_mask.png)
 
 Visualize corresponding patches.
 ```
 python visualize.py patch
 ```
-
-![Visualiztion masks](../imgs/example_mask.png)
+![Visualiztion corresponding patches](../imgs/example_patch.png)
 
 Visualize depth maps.
 ```
