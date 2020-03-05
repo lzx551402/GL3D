@@ -34,11 +34,11 @@ class PatchExtractor(object):
         for idx in range(kpt_n):
             # construct affine transformation matrix.
             affine_mat = np.zeros((3, 2), dtype=np.float32)
-            affine_mat[0, 0] = kpts[idx, 0] * W
-            affine_mat[1, 0] = kpts[idx, 1] * W
+            affine_mat[0, 0] = kpts[idx, 0] * W / 2
+            affine_mat[1, 0] = kpts[idx, 1] * W / 2
             affine_mat[2, 0] = kpts[idx, 2] * W / 2 + W / 2
-            affine_mat[0, 1] = kpts[idx, 3] * H
-            affine_mat[1, 1] = kpts[idx, 4] * H
+            affine_mat[0, 1] = kpts[idx, 3] * H / 2
+            affine_mat[1, 1] = kpts[idx, 4] * H / 2
             affine_mat[2, 1] = kpts[idx, 5] * H / 2 + H / 2
             # get input grid.
             input_grid = np.matmul(self.output_grid, affine_mat)
