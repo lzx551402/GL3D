@@ -17,6 +17,7 @@ sys.path.append('..')
 
 from utils.geom import get_essential_mat, get_epipolar_dist, undist_points, warp, grid_positions, upscale_positions, downscale_positions, relative_pose
 from utils.io import read_kpt, read_corr, read_mask, hash_int_pair, read_cams, load_pfm
+from utils.patch_extractor import PatchExtractor
 
 
 def draw_kpts(imgs, kpts, color=(0, 255, 0), radius=2, thickness=2):
@@ -186,6 +187,33 @@ if __name__ == '__main__':
         match_num = kpts0.shape[0]
         match_idx = np.tile(np.array(range(match_num))[..., None], [1, 2])
         display = draw_matches(img0, img1, kpts0, kpts1, match_idx, downscale_ratio=1.0)
+    elif args.fn == 'patch':
+        disp_num = 100
+        patch_extractor = PatchExtractor()
+
+        kpts0 = match_records[match_pair_idx][2][:, 0:6][0:disp_num]
+        kpts0 = undist_points(kpts0, K0, dist0, ori_img_size0)
+
+        kpts1 = match_records[match_pair_idx][2][:, 6:12][0:disp_num]
+        kpts1 = undist_points(kpts1, K0, dist1, ori_img_size1)
+
+        gray_img0 = cv2.cvtColor(img0, cv2.COLOR_RGB2GRAY)
+        patches0 = patch_extractor.get_patches(gray_img0, kpts0)
+
+        gray_img1 = cv2.cvtColor(img1, cv2.COLOR_RGB2GRAY)
+        patches1 = patch_extractor.get_patches(gray_img1, kpts1)
+
+        match_n = patches0.shape[0]
+        display = []
+        tmp_row = []
+        for i in range(match_n):
+            tmp_pair = np.concatenate((patches0[i], patches1[i]), axis=-1)
+            tmp_row.append(tmp_pair)
+            if (i + 1) % 10 == 0 and i != 0:
+                tmp_row = np.concatenate(tmp_row, axis=-1)
+                display.append(tmp_row)
+                tmp_row = []
+        display = np.concatenate(display, axis=0)
     elif args.fn == 'depth':
         depth_path0 = os.path.join(root, 'depths', basename0 + '.pfm')
         depth_path1 = os.path.join(root, 'depths', basename1 + '.pfm')
