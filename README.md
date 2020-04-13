@@ -83,9 +83,11 @@ cat download_data_gl3d_imgs/*.tar.* | tar -xvf -
 data                          
  └── <pid> 
        ├── undist_images/*
+       ├── blended_images/*
        ├── geolabel/*
        ├── img_kpts/*.bin
        ├── depths/*.pfm
+       ├── rendered_depths/*.pfm
        └── image_list.txt
 ```
 
