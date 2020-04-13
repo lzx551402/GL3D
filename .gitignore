@@ -1,10 +1,13 @@
 data/*/depths
+data/*/rendered_depths
+data/*/raw_images
+data/*/undist_images
+data/*/blended_images
 data/*/geolabel
 data/*/img_kpts
 data/*/reg_feat
-data/*/undist_images
 data/*/match_sets
-data/*/raw_images
+download_data_*
 
 *.pyc
 .vscode/*

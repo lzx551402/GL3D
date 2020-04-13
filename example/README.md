@@ -31,3 +31,5 @@ Visualize depth maps.
 python visualize.py depth
 ```
 ![Visualizeation depths](../imgs/example_depth.png)
+
+To visualize blended images or rendered depths, pass ``--blended`` when running above scripts.

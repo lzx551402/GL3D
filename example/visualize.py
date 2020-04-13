@@ -117,6 +117,8 @@ if __name__ == '__main__':
     from argparse import ArgumentParser
     parser = ArgumentParser()
     parser.add_argument('fn', type=str, help='visualization function, e.g., kpt, match, mask.')
+    parser.add_argument('--blended', dest='blended', default=False,
+                        action='store_true', help='whether to use blended data')
     parser.add_argument('--pair_idx', dest='pair_idx', type=int,
                         default=0, help='pair index to visualize')
     args = parser.parse_args()
@@ -132,8 +134,12 @@ if __name__ == '__main__':
     basename0 = str(cidx0).zfill(8)
     basename1 = str(cidx1).zfill(8)
     # read images
-    img_path0 = os.path.join(root, 'undist_images', basename0 + '.jpg')
-    img_path1 = os.path.join(root, 'undist_images', basename1 + '.jpg')
+    if args.blended:
+        img_path0 = os.path.join(root, 'blended_images', basename0 + '.jpg')
+        img_path1 = os.path.join(root, 'blended_images', basename1 + '.jpg')
+    else:
+        img_path0 = os.path.join(root, 'undist_images', basename0 + '.jpg')
+        img_path1 = os.path.join(root, 'undist_images', basename1 + '.jpg')
     img0 = cv2.imread(img_path0)[..., ::-1]
     img1 = cv2.imread(img_path1)[..., ::-1]
     # read cameras
@@ -215,8 +221,12 @@ if __name__ == '__main__':
                 tmp_row = []
         display = np.concatenate(display, axis=0)
     elif args.fn == 'depth':
-        depth_path0 = os.path.join(root, 'depths', basename0 + '.pfm')
-        depth_path1 = os.path.join(root, 'depths', basename1 + '.pfm')
+        if args.blended:
+            depth_path0 = os.path.join(root, 'rendered_depths', basename0 + '.pfm')
+            depth_path1 = os.path.join(root, 'rendered_depths', basename1 + '.pfm')
+        else:
+            depth_path0 = os.path.join(root, 'depths', basename0 + '.pfm')
+            depth_path1 = os.path.join(root, 'depths', basename1 + '.pfm')
         depth0 = load_pfm(depth_path0)
         depth1 = load_pfm(depth_path1)
 
@@ -244,7 +254,7 @@ if __name__ == '__main__':
         disp_warp = np.concatenate([warp_img, disp_img1], axis=1)
         disp_depth = disp_depth / np.max(disp_depth).astype(np.float32)
         disp_warp = disp_warp / np.max(disp_warp).astype(np.float32)
-        display = np.concatenate([disp_depth, disp_warp], axis=0)
+        display = np.concatenate([disp_warp, disp_depth], axis=0)
     elif args.fn == 'mask':
         # visualize the mask file.
         mask_path = os.path.join(root, 'geolabel', 'mask.bin')

@@ -21,6 +21,15 @@ If you have used the correspondence labels, please also cite:
         year={2018}
     }
 
+GL3D is now tighly combined with [BlendedMVS](https://github.com/YoYo000/BlendedMVS). If you have used the rendered depths or blended images, please also cite:
+
+    @inproceedings{yao2020blendedmvs,
+      title={BlendedMVS: A Large-scale Dataset for Generalized Multi-view Stereo Networks},
+      author={Yao, Yao and Luo, Zixin and Li, Shiwei and Zhang, Jingyang and Ren, Yufan and Zhou, Lei and Fang, Tian and Quan, Long},
+      booktitle={Computer Vision and Pattern Recognition (CVPR)},
+      year={2020}
+    }
+
 ## Dataset Description
 
 GL3D contains 125,623 high-resolution images regarding 543 different scenes. 
@@ -41,7 +50,8 @@ Research works below are supported by GL3D:
 |Image retrieval |[MIRorR](https://arxiv.org/abs/1811.10343), ACCV'18 |
 |Local descriptor|[GeoDesc](https://arxiv.org/abs/1807.06294), ECCV'18|
 |Local descriptor|[ContextDesc](https://arxiv.org/abs/1904.04084), CVPR'19|
-|Outlier rejection|[OA-Net](https://arxiv.org/abs/1908.04964), ICCV'19|
+|Outlier rejection|[OANet](https://arxiv.org/abs/1908.04964), ICCV'19|
+|Local feature   |[ASLFeat](https://arxiv.org/abs/2003.10071), CVPR'20|
 
 ## Downloads
 
@@ -51,6 +61,7 @@ Undistorted images resized to 1000x1000 are provided.
 |:-------:|:--------------:|:-----------:|:---------:|:--:|:------------------------:|
 |   GL3D  |    gl3d_imgs   |      0      |    125    |62G |1000x1000 undistorted images of GL3D |
 |   GL3D  | gl3d_raw_imgs  |      0      |    106    |52G |raw images of test set of GL3D       |
+|   GL3D & BlendedMVS | gl3d_blended_images |      0      |    117 |58G |1000x1000 blended images of GL3D and BlendedMVS |
 
 Use `download_data.sh` script to download the tar files, by passing augments
 ```
@@ -80,9 +91,10 @@ data
 
 |File Name                |Data Name  |Chunk Start|Chunk End|Disk |Task            |Descriptions                                                         |
 |:------------------------|:---------:|:---------:|:-------:|:---:|:--------------:|:-------------------------------------------------------------------:|
-|geolabel/cameras.txt     |gl3d_cams  |0          |0        |<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.              |
-|img_kpts/<img_idx>.bin   |gl3d_kpts  |0          |57       |28G  |Common          |Image keypoints detected by SIFT.                                    |
-|depths/<img_idx>.pfm     |gl3d_depths|0          |59       |30G  |Common          |Depth maps from MVS algorithms.                                      |
+|geolabel/cameras.txt          |gl3d_cams           |0          |0        |<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
+|img_kpts/<img_idx>.bin        |gl3d_kpts           |0          |57       |28G  |Common          |Image keypoints detected by SIFT.                      |
+|depths/<img_idx>.pfm          |gl3d_depths         |0          |59       |30G  |Common          |Depth maps from MVS algorithms.                        |
+|rendered_depths/<img_idx>.pfm |gl3d_rendered_depths|0          |59       |30G  |Common          |Depth maps rendered from 3D mesh models                |
 |geolabel/corr.bin        |gl3d_corr  |0          |12       |6.1G |Local descriptor|Image correspondences that haved survived from SfM.                  |
 |geolabel/mask.bin        |gl3d_mask  |0          |10       |5.3G |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.     |
 |geolabel/common_track.txt|gl3d_ct    |0          |0        |<0.1G|Image retrieval |Common track ratio of image pairs, computed from SfM.                |
@@ -116,6 +128,8 @@ This dataset is prepared and maintained by
 [Tian Fang](mailto:fangtian@altizure.com).
 3D reconstructions are obtained by [Altizure](https://www.altizure.com/).
 
+We also thank [Yao Yao](mailto:yyaoag@cse.ust.hk) and [Lei Zhou](mailto:lzhouai@cse.ust.hk) for generating rendered depths and blended images to further improve the data quality.
+
 [1]: https://arxiv.org/abs/1811.10343
 
 ## Changelog
@@ -133,3 +147,6 @@ This dataset is prepared and maintained by
 ### 2019-12-16 Update GL3D_V2
 - Another 530 Internet tourism datasets are added to enrich the data.
 - Mesh overlapping ratio and overlapping masks are provided.
+
+### 2020-4-13 Update GL3D_V2
+- Add download link to rendered depths and blended images, and further refer to the combination of GL3D and BlendedMVS as BlendedMVG, for solving general multi-view geometry problems. Please visit [BlendedMVS](https://github.com/YoYo000/BlendedMVS) and refer to its respective [paper](https://arxiv.org/abs/1911.10127) for details.
