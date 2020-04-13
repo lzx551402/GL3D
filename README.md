@@ -21,7 +21,7 @@ If you have used the correspondence labels, please also cite:
         year={2018}
     }
 
-GL3D is now tighly combined with [BlendedMVS](https://github.com/YoYo000/BlendedMVS). If you have used the rendered depths or blended images, please also cite:
+GL3D is now tighly combined with [BlendedMVS](https://github.com/YoYo000/BlendedMVS), referred to as BlendedMVG. If you have used the rendered depths or blended images, please also cite:
 
     @inproceedings{yao2020blendedmvs,
       title={BlendedMVS: A Large-scale Dataset for Generalized Multi-view Stereo Networks},
