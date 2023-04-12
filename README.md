@@ -59,23 +59,10 @@ Undistorted images resized to 1000x1000 are provided.
 
 | Sources |    Data Name   |Link|Disk|       Descriptions       |
 |:-------:|:--------------:|:--:|:--:|:------------------------:|
-|   GL3D  |    gl3d_imgs   |[URL]()|62G |1000x1000 undistorted images of GL3D |
-|   GL3D  | gl3d_raw_imgs  |[URL]()|52G |raw images of test set of GL3D       |
-|   GL3D & BlendedMVS | gl3d_blended_images |[URL]()|58G |1000x1000 blended images of GL3D and BlendedMVS |
+|   GL3D  |    gl3d_imgs   |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LknxGy1gesj30SQ1I?e=RTT6re)|62G |1000x1000 undistorted images of GL3D |
+|   GL3D  | gl3d_raw_imgs  |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lknv-RWaTA_OzkZjI?e=HtbfYU)|52G |raw images of test set of GL3D       |
+|   GL3D & BlendedMVS | gl3d_blended_images |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LknrD6mmoVC7f7HYH?e=8CeQeb)|58G |1000x1000 blended images of GL3D and BlendedMVS |
 
-~~Use `download_data.sh` script to download the tar files, by passing augments~~
-```
-~~bash download_data.sh <data_name> <chunk_start> <chunk_end>~~
-```
-~~For example, to download GL3D images, run~~
-```
-~~bash download_data.sh gl3d_imgs 0 125~~
-```
-
-~~To extract the files, run~~
-```
-~~cat download_data_gl3d_imgs/*.tar.* | tar -xvf -~~
-```
 
 ## Dataset Format 
 
@@ -93,16 +80,14 @@ data
 
 |File Name                |Data Name  |Link|Disk |Task            |Descriptions                                                         |
 |:------------------------|:---------:|:--:|:---:|:--------------:|:-------------------------------------------------------------------:|
-|geolabel/cameras.txt          |gl3d_cams           |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkmcAeDvT9VmIbQHJ?e=mAMQUO)|<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
-|img_kpts/<img_idx>.bin        |gl3d_kpts           |[URL]()|28G  |Common          |Image keypoints detected by SIFT.                      |
-|depths/<img_idx>.pfm          |gl3d_depths         |[URL]()|30G  |Common          |Depth maps from MVS algorithms.                        |
-|rendered_depths/<img_idx>.pfm |gl3d_rendered_depths|[URL]()|30G  |Common          |Depth maps rendered from 3D mesh models                |
-|geolabel/corr.bin        |gl3d_corr  |[URL]()|6.1G |Local descriptor|Image correspondences that haved survived from SfM.                  |
-|geolabel/mask.bin        |gl3d_mask  |[URL]()|5.3G |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.     |
-|geolabel/common_track.txt|gl3d_ct    |[URL]()|<0.1G|Image retrieval |Common track ratio of image pairs, computed from SfM.                |
-|geolabel/mesh_overlap.txt|gl3d_mo    |[URL]()|<0.1G|Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.|
-
-~~Again, use `download_data.sh` to fetch the above geometric labels or reconstruction results,~~ 
+|geolabel/cameras.txt          |gl3d_cams           |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lkmf-zEcSRRlGPQyv?e=2nFWxn)|<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
+|img_kpts/<img_idx>.bin        |gl3d_kpts           |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lknh620XvMjxW8yrs?e=ZwLmye)|28G  |Common          |Image keypoints detected by SIFT.                      |
+|depths/<img_idx>.pfm          |gl3d_depths         |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lknn3rHDqrg_7OMwt?e=pWsbs7)|30G  |Common          |Depth maps from MVS algorithms.                        |
+|rendered_depths/<img_idx>.pfm |gl3d_rendered_depths|[URL](https://1drv.ms/u/s!Anl8gFgW1C7LknerrzkrkiOae4JN?e=mHVhg3)|30G  |Common          |Depth maps rendered from 3D mesh models                |
+|geolabel/corr.bin        |gl3d_corr  |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkmhoY66o5bViFhZ-?e=ZOXRXV)|6.1G |Local descriptor|Image correspondences that haved survived from SfM.                  |
+|geolabel/mask.bin        |gl3d_mask  |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lknbi0W0A30i7BMTO?e=1N1QWC)|5.3G |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.     |
+|geolabel/common_track.txt|gl3d_ct    |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkmXVtj6a72czehJU?e=NhfuzD)|<0.1G|Image retrieval |Common track ratio of image pairs, computed from SfM.                |
+|geolabel/mesh_overlap.txt|gl3d_mo    |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkmYojA4pxN4FYXgn?e=cDM4d8)|<0.1G|Image retrieval |Mesh overlap ratio of image pairs, computed from mesh re-projections.|
 
 For data organization, refer to [docs/data_format.md](docs/data_format.md).
 
@@ -112,15 +97,15 @@ Visualizations and examples of usage can be found in [example/README.md](example
 
 Please feel free to inform us if you need some other intermediate results for your research.
 
-## Data Preview
+## Data Preview (not available anymore)
 The mesh reconstruction is available for preview by substituting `<pid>` in the following link:
 
 ```
 https://www.altizure.com/project-model?pid=<pid>
 ```
 
-An example is provided [here](https://www.altizure.com/project-model?pid=57f8d9bbe73f6760f10e916a).
-Noted that some projects are not online available, from `000000000000000000000000` to `00000000000000000000001d`.
+~~An example is provided [here](https://www.altizure.com/project-model?pid=57f8d9bbe73f6760f10e916a).~~
+~~Noted that some projects are not online available, from `000000000000000000000000` to `00000000000000000000001d`.~~
 
 ## Acknowledgments
 This dataset is prepared and maintained by
