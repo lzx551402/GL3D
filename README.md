@@ -82,7 +82,7 @@ data
 |:------------------------|:---------:|:--:|:---:|:--------------:|:-------------------------------------------------------------------:|
 |geolabel/cameras.txt          |gl3d_cams           |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lkmf-zEcSRRlGPQyv?e=2nFWxn)|<0.1G|Common          |Camera intrisic/extrinsic parameters, recovered by SfM.|
 |img_kpts/<img_idx>.bin        |gl3d_kpts           |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkzlYK0CSNzcGc2m0?e=bwNv35)|28G  |Common          |Image keypoints detected by SIFT.                      |
-|depths/<img_idx>.pfm          |gl3d_depths         |[URL]https://1drv.ms/u/s!Anl8gFgW1C7LkzqH3fqIR-z3ZZis?e=jbeyxg)|30G  |Common          |Depth maps from MVS algorithms.                        |
+|depths/<img_idx>.pfm          |gl3d_depths         |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkzqH3fqIR-z3ZZis?e=jbeyxg)|30G  |Common          |Depth maps from MVS algorithms.                        |
 |rendered_depths/<img_idx>.pfm |gl3d_rendered_depths|[URL](https://1drv.ms/u/s!Anl8gFgW1C7LknerrzkrkiOae4JN?e=mHVhg3)|30G  |Common          |Depth maps rendered from 3D mesh models                |
 |geolabel/corr.bin        |gl3d_corr  |[URL](https://1drv.ms/u/s!Anl8gFgW1C7LkmhoY66o5bViFhZ-?e=ZOXRXV)|6.1G |Local descriptor|Image correspondences that haved survived from SfM.                  |
 |geolabel/mask.bin        |gl3d_mask  |[URL](https://1drv.ms/u/s!Anl8gFgW1C7Lknbi0W0A30i7BMTO?e=1N1QWC)|5.3G |Image retrieval |Overlap masks of image pairs, computed from mesh re-projections.     |
